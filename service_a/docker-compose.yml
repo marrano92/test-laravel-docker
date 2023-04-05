@@ -1,0 +1,33 @@
+version: '3'
+services:
+    service_a:
+        container_name: service_a
+        build:
+            context: ./vendor/laravel/sail/runtimes/8.2
+            dockerfile: Dockerfile
+            args:
+                WWWGROUP: '${WWWGROUP}'
+        image: sail-8.2/app
+        extra_hosts:
+            - 'host.docker.internal:host-gateway'
+        ports:
+            - '${APP_PORT:-81}:80'
+            - '${VITE_PORT:-5174}:${VITE_PORT:-5174}'
+        environment:
+            WWWUSER: '${WWWUSER}'
+            LARAVEL_SAIL: 1
+            XDEBUG_MODE: '${SAIL_XDEBUG_MODE:-off}'
+            XDEBUG_CONFIG: '${SAIL_XDEBUG_CONFIG:-client_host=host.docker.internal}'
+        volumes:
+            - '.:/var/www/html'
+        networks:
+            - service_a
+            - service_b_service_b
+networks:
+    service_a:
+        driver: bridge
+    service_b_service_b:
+        external: true
+volumes:
+    sail-mysql:
+        driver: local
