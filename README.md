@@ -8,27 +8,21 @@ Prerequisites
 
 Before running this project, you will need to have the following installed on your local machine:
 
--   [Docker](https://www.docker.com/products/docker-desktop)
--   [Docker Compose](https://docs.docker.com/compose/install/)
+-   [Docker](https://www.docker.com/products/docker-desktop) V23.0 or later
+-   [Docker Compose](https://docs.docker.com/compose/install/) V1.2 or later
+-   [composer](https://getcomposer.org/) V2.0 or later
 
 Running the Microservices with Sail Command
 -------------------------------------------
 
-1.  Clone the repository to your local machine:
-
-    bash
-
+1.  Follow these steps to run locally the application:
 -   `git clone https://github.com/marrano92/test-laravel-docker`
+-  Navigate to the service_a directory:
+- `composer install`
+- `./vendor/bin/sail up -d`
+-  Navigate to the service_b directory:
+- `composer install`
+- `./vendor/bin/sail up -d`
 
-    -   Navigate to the project directory:
+2.  Access the application in your web browser at <http://localhost:81/api/validation/start> to start the validation.
 
-    bash
-
-    -   `cd laravel-microservices`
-
-1.  `./vendor/bin/sail up`
-
-    The first time you run this command, it will take a few minutes to download and build the Docker images.
-
-2.  Access the application in your web browser at <http://localhost:81/api/validation/start>.
-# test-laravel-docker
